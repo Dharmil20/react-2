@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export function useFetch(url) {
+export function useFetch(url, reFetchTime) {
     const [data, setData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
 
@@ -15,6 +15,12 @@ export function useFetch(url) {
     useEffect(() => {
         getDetails();
     }, [url])
+
+    useEffect(() => {
+        const interval = setInterval(() => getDetails(), reFetchTime * 1000)
+
+        return () => clearInterval(interval);
+    }, [url, reFetchTime])
 
     return { data, isLoading }
 }

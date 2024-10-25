@@ -5,7 +5,7 @@ import { useFetch } from './hooks/useFetch';
 function App() {
   const [currTodo, setCurrTodo] = useState(1);
   const { count, handleCount } = useCounter();
-  const {data, isLoading} = useFetch("https://jsonplaceholder.typicode.com/todos/" + currTodo);
+  const {data, isLoading} = useFetch("https://jsonplaceholder.typicode.com/todos/" + currTodo, 10);
 
   return (
     <>
