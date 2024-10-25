@@ -3,14 +3,17 @@ import './App.css'
 import { useFetch } from './hooks/useFetch';
 
 function App() {
-  const {count, handleCount} = useCounter();
-  const finalData = useFetch("https://jsonplaceholder.typicode.com/todos/1");
+  const [currTodo, setCurrTodo] = useState(1);
+  const { count, handleCount } = useCounter();
+  const {data, isLoading} = useFetch("https://jsonplaceholder.typicode.com/todos/" + currTodo);
 
   return (
     <>
-      Hello There <br />
-      <button onClick={handleCount}>Increase {count}</button> <br />
-      {finalData.data.title}
+      <button onClick={handleCount}>Increase {count}</button> <br /> <br />
+      <button onClick={() => setCurrTodo(1)}>1</button>
+      <button onClick={() => setCurrTodo(2)}>2</button>
+      <button onClick={() => setCurrTodo(3)}>3</button> <br />
+      {isLoading ? "Loading......" : data.title}
     </>
   )
 }
