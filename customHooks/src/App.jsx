@@ -1,13 +1,16 @@
 import { useState } from 'react'
 import './App.css'
+import { useFetch } from './hooks/useFetch';
 
 function App() {
   const {count, handleCount} = useCounter();
+  const finalData = useFetch("https://jsonplaceholder.typicode.com/todos/1");
 
   return (
     <>
       Hello There <br />
-      <button onClick={handleCount}>Increse {count}</button>
+      <button onClick={handleCount}>Increase {count}</button> <br />
+      {finalData.data.title}
     </>
   )
 }
