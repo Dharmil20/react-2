@@ -1,15 +1,26 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 
-export function usePrev(value){
-    const ref = useRef();
+export function usePrev(value, initial){
+    const ref = useRef({target: value, previous: initial})
 
-    useEffect(()=>{
-        ref.current = value
-    }, [value])
+    if(ref.current.target !== value){
+        ref.current.previous = ref.current.target;
+        ref.current.target = value;
+    }
 
-    return ref.current; 
-    //React property: It returns first, useEffect gets called later 
+    return ref.current.previous
 }
+
+// export function usePrev(value){
+//     const ref = useRef();
+
+//     useEffect(()=>{
+//         ref.current = value
+//     }, [value])
+
+//     return ref.current; 
+//     //React property: It returns first, useEffect gets called later 
+// }
 //Refs dont re-render when they change
 /*
 Eska Implementation aisa hai ki: 

@@ -7,7 +7,7 @@ function App() {
   const [currTodo, setCurrTodo] = useState(1);
   const { count, handleCount } = useCounter();
   const [state, setState] = useState(0);
-  const prev = usePrev(state);
+  const prev = usePrev(state, 0);
   const { data, isLoading } = useFetch("https://jsonplaceholder.typicode.com/todos/" + currTodo, 10);
 
   return (
